@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           # Make sure the actual branch is checked out when running on PR
-          # ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ github.event.pull_request.head.sha }}
           # Full git history needed to get proper list of changed files
           fetch-depth: 0
 
@@ -29,5 +29,7 @@ jobs:
           MARKDOWN_CONFIG_FILE: .markdownlint.json
           # Only check new or edited files
           VALIDATE_ALL_CODEBASE: false
+          # hadolint tries to validate jinja templates
+          VALIDATE_DOCKERFILE_HADOLINT: false
           # Fail on errors
           DISABLE_ERRORS: false
